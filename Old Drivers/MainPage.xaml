@@ -1,0 +1,36 @@
+﻿<Page x:Name="page"
+    x:Class="Old_Drivers.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Old_Drivers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FF0078D7" Padding="0,5,0,30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Uid="headerTextBlock" Grid.Column="0" Text="" VerticalAlignment="Center" Margin="20,0,0,0" Foreground="White"/>
+            <ComboBox x:Name="comboBox" x:Uid="comboBoxLanguage" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0">
+                <ComboBoxItem x:Uid="comboBoxMorseCode" Content=""/>
+                <ComboBoxItem x:Uid="comboBoxBase64" Content=""/>
+                <ComboBoxItem x:Uid="comboBoxBaiduCloudDisc" Content=""/>
+                <ComboBoxItem x:Uid="comboBoxMagnetURI" Content=""/>
+            </ComboBox>
+        </Grid>
+        <TextBox x:Name="textBox" Grid.Row="1"/>
+        <Button x:Name="buttonAbout" x:Uid="buttonAboutLanguage" Grid.Row="2" Content="" HorizontalAlignment="Left" Margin="10,20,0,10" Click="showAbout"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,10,10">
+            <Button x:Name="buttonCoding" x:Uid="buttonCodingLanguage" Content="" Click="button_Encode_Click"/>
+            <Button x:Name="buttonDecoding" x:Uid="buttonDecodingLanguage" Content="" Margin="30,0,0,0" Click="button_Decode_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
