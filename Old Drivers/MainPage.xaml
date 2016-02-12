@@ -13,24 +13,30 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#FF0078D7" Padding="0,5,0,30">
+        <Grid Grid.Row="0" Background="#FF0078D7" Padding="0,10,0,50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock x:Uid="headerTextBlock" Grid.Column="0" Text="" VerticalAlignment="Center" Margin="20,0,0,0" Foreground="White"/>
-            <ComboBox x:Name="comboBox" x:Uid="comboBoxLanguage" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0">
+            <ComboBox x:Name="comboBox" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" SelectionChanged="comboBox_Selection_Changed">
                 <ComboBoxItem x:Uid="comboBoxMorseCode" Content=""/>
                 <ComboBoxItem x:Uid="comboBoxBase64" Content=""/>
                 <ComboBoxItem x:Uid="comboBoxBaiduCloudDisc" Content=""/>
                 <ComboBoxItem x:Uid="comboBoxMagnetURI" Content=""/>
             </ComboBox>
         </Grid>
-        <TextBox x:Name="textBox" Grid.Row="1"/>
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBlock x:Uid="textBlockSource" Margin="10,10,0,0" Text=""/>
+            <TextBox x:Name="textBox" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0,5,0,0"/>
+            <TextBlock x:Uid="textBlockTranslate" Margin="10,10,0,0" Text=""/>
+            <TextBox x:Name="textBoxDecode" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0,5,0,0" IsReadOnly="True"/>
+        </StackPanel>
         <Button x:Name="buttonAbout" x:Uid="buttonAboutLanguage" Grid.Row="2" Content="" HorizontalAlignment="Left" Margin="10,20,0,10" Click="showAbout"/>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,10,10">
-            <Button x:Name="buttonCoding" x:Uid="buttonCodingLanguage" Content="" Click="button_Encode_Click"/>
-            <Button x:Name="buttonDecoding" x:Uid="buttonDecodingLanguage" Content="" Margin="30,0,0,0" Click="button_Decode_Click"/>
+            <Button x:Name="buttonCopy" x:Uid="buttonCopyLanguage" Content="" Click="button_Copy_Click"/>
+            <Button x:Name="buttonCoding" x:Uid="buttonCodingLanguage" Content="" Margin="20,0,0,0" Click="button_Encode_Click"/>
+            <Button x:Name="buttonDecoding" x:Uid="buttonDecodingLanguage" Content="" Margin="20,0,0,0" Click="button_Decode_Click"/>
         </StackPanel>
     </Grid>
 </Page>

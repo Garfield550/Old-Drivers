@@ -126,6 +126,9 @@
   <data name="buttonCodingLanguage.Content" xml:space="preserve">
     <value>编码</value>
   </data>
+  <data name="buttonCopyLanguage.Content" xml:space="preserve">
+    <value>复制到剪贴板</value>
+  </data>
   <data name="buttonDecodingLanguage.Content" xml:space="preserve">
     <value>解码</value>
   </data>
@@ -149,5 +152,11 @@
   </data>
   <data name="headerTextBlock.Text" xml:space="preserve">
     <value>老司机</value>
+  </data>
+  <data name="textBlockSource.Text" xml:space="preserve">
+    <value>源：</value>
+  </data>
+  <data name="textBlockTranslate.Text" xml:space="preserve">
+    <value>翻译：</value>
   </data>
 </root>

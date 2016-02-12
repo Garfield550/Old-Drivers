@@ -16,7 +16,10 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>Old Drivers_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Old Drivers_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>2C1AB731B2A3FE47CDB9907147FE6AE9E27E08B6</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -92,6 +95,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Old Drivers_StoreKey.pfx" />
     <None Include="project.json" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\zh-CN\Resources.resw" />
@@ -120,6 +124,7 @@
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -143,6 +148,10 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

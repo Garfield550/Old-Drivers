@@ -126,6 +126,9 @@
   <data name="buttonCodingLanguage.Content" xml:space="preserve">
     <value>Encode</value>
   </data>
+  <data name="buttonCopyLanguage.Content" xml:space="preserve">
+    <value>Copy to Clipboard</value>
+  </data>
   <data name="buttonDecodingLanguage.Content" xml:space="preserve">
     <value>Decode</value>
   </data>
@@ -149,5 +152,11 @@
   </data>
   <data name="headerTextBlock.Text" xml:space="preserve">
     <value>Old Drivers</value>
+  </data>
+  <data name="textBlockSource.Text" xml:space="preserve">
+    <value>Source:</value>
+  </data>
+  <data name="textBlockTranslate.Text" xml:space="preserve">
+    <value>Translate:</value>
   </data>
 </root>

@@ -2,6 +2,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.Text;
+using System.Collections.Generic;
+using Windows.ApplicationModel.DataTransfer;
 
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
@@ -18,175 +20,263 @@ namespace Old_Drivers
             InitializeComponent();
         }
 
-        private static volatile string[,] CodeTable =
+        /// <summary>
+        /// Gets the dictionary of all characters in morse code (true being a dash, false being a dot).
+        /// <copyright url="https://github.com/wrightg42/morse-code"> This code is protected under the MIT License. </copyright>
+        /// </summary>
+        public static Dictionary<char, string> MorseCharacterValues
         {
-
-            {"A","._"},
-
-            {"B","_..."},
-
-            {"C","_._."},
-
-            {"D","_.."},
-
-            {"E","."},
-
-            {"E",".._.."},
-
-            {"F",".._."},
-
-            {"G","__."},
-
-            {"H","...."},
-
-            {"I",".."},
-
-            {"J",".___"},
-
-            {"K","_._"},
-
-            {"L","._.."},
-
-            {"M","__"},
-
-            {"N","_."},
-
-            {"O","___"},
-
-            {"P",".__."},
-
-            {"Q","__._"},
-
-            {"R","._."},
-
-            {"S","..."},
-
-            {"T","_"},
-
-            {"U",".._"},
-
-            {"V","..._"},
-
-            {"W",".__"},
-
-            {"X","_.._"},
-
-            {"Y","_.__"},
-
-            {"Z","__.."},
-
-            {"0","_____"},
-
-            {"1",".____"},
-
-            {"2","..___"},
-
-            {"3","...__"},
-
-            {"4","...._"},
-
-            {"5","....."},
-
-            {"6","_...."},
-
-            {"7","__..."},
-
-            {"8","___.."},
-
-            {"9","____."},
-
-            {".","._._._"},
-
-            {",","__..__"},
-
-            {":","___..."},
-
-            {"?","..__.."},
-
-            {"\'",".____."},
-
-            {"_","_...._"},
-
-            {"/","_.._."},
-
-            {"(","_.__."},
-
-            {")","_.__._"},
-
-            {"\"","._.._."},
-
-            {"=","_..._"},
-
-            {"+","._._."},
-
-            {"*","_.._"},
-
-            {"@",".__._."},
-
-        };
-
-        public static string Enc(string str)
-        {
-            int i;
-            string ret = string.Empty;
-            if (str != null && (str = str.ToUpper()).Length > 0)
-                foreach (char asc in str)
-                    if ((i = Find(asc.ToString(), 0)) > -1)
-                        ret += " " + CodeTable[i, 1];
-            return ret;
-        }
-
-        public static string Dec(string str)
-        {
-            int i;
-            string[] splits;
-            string ret = string.Empty;
-            if (str != null && (splits = str.Split(' ')).Length > 0)
+            get
             {
-                foreach (string split in splits)
-                    if ((i = Find(split, 1)) > -1)
-                        ret += CodeTable[i, 0];
-                return ret;
+                return new Dictionary<char, string>()
+                {
+                    { 'A', ".-" },
+                    { 'B', "-..." },
+                    { 'C', "-.-." },
+                    { 'D', "-.." },
+                    { 'E', "." },
+                    { 'F', "..-." },
+                    { 'G', "--." },
+                    { 'H', "...." },
+                    { 'I', ".." },
+                    { 'J', ".---" },
+                    { 'K', "-.-" },
+                    { 'L', ".-.." },
+                    { 'M', "--" },
+                    { 'N', "-." },
+                    { 'O', "---" },
+                    { 'P', ".--." },
+                    { 'Q', "--.-" },
+                    { 'R', ".-." },
+                    { 'S', "..." },
+                    { 'T', "-" },
+                    { 'U', "..-" },
+                    { 'V', "...-" },
+                    { 'W', ".--" },
+                    { 'X', "-..-" },
+                    { 'Y', "-.--" },
+                    { 'Z', "--.." },
+                    { '0', "-----" },
+                    { '1', ".----" },
+                    { '2', "..---" },
+                    { '3', "...--" },
+                    { '4', "....-" },
+                    { '5', "....." },
+                    { '6', "-...." },
+                    { '7', "--..." },
+                    { '8', "---.." },
+                    { '9', "----." },
+                    { '.', ".-.-.-" },
+                    { ',', "--..--" },
+                    { '?', "..--.." },
+                    { '!', "-.-.--" },
+                    { '\'', ".----." },
+                    { '"', ".-..-." },
+                    { '(', "-.--." },
+                    { ')', "-.--.-" },
+                    { '&', ".-..." },
+                    { ':', "---..." },
+                    { ';', "-.-.-." },
+                    { '=', "-...-" },
+                    { '+', ".-.-." },
+                    { '-', "-....-" },
+                    { '/', "-..-." },
+                    { '_', "..--.-" },
+                    { '$', "...-..-" },
+                    { '@', ".--.-." },
+                    { '%', ".-.-.- -..-. .-.-.-" }
+                };
             }
-            return "{#}";
         }
 
-        private static int Find(string str, int cols)
+        /// <summary>
+        /// Converts a message from morse to english.
+        /// <copyright url="https://github.com/wrightg42/morse-code"> This code is protected under the MIT License. </copyright>
+        /// </summary>
+        /// <param name="message"> The message. </param>
+        /// <returns> The english of the message. </returns>
+        public static string ConvertFromMorse(string message)
         {
-            int i = 0, len = CodeTable.Length / 2;
-            while (i < len)
+            // Copy each character into the result string
+            string res = string.Empty;
+            foreach (string word in message.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
             {
-                if (CodeTable[i, cols] == str)
-                    return i;
-                i++;
-            };
-            return -1;
+                foreach (string letter in word.Split(' '))
+                {
+                    res += FindLetter(letter);
+                }
+
+                res += ' ';
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        /// Finds the character value of a morse code character.
+        /// <copyright url="https://github.com/wrightg42/morse-code"> This code is protected under the MIT License. </copyright>
+        /// </summary>
+        /// <param name="morseVal"> The morse code of the character. </param>
+        /// <returns> The english character. </returns>
+        public static char FindLetter(string morseVal)
+        {
+            foreach (char c in MorseCharacterValues.Keys)
+            {
+                if (MorseCharacterValues[c] == morseVal)
+                {
+                    return c;
+                }
+            }
+
+            // Make unknown characters questions marks
+            return '?';
+        }
+
+        /// <summary>
+        /// Converts plain text to morse code.
+        /// <copyright url="https://github.com/wrightg42/morse-code"> This code is protected under the MIT License. </copyright>
+        /// </summary>
+        /// <param name="message"> The plain text. </param>
+        /// <returns> The morse code. Null if it could not convert it. </returns>
+        public static string ConvertToMorse(string message)
+        {
+            // Make the message upper case so it has recognisable characters
+            message = message.ToUpper();
+
+            // Return null if the message is not valid
+            if (!ValidEnglish(message))
+            {
+                return null;
+            }
+            else
+            {
+                // Otherwise convert it
+                string res = string.Empty;
+
+                // Split by word
+                foreach (string word in message.Split(' '))
+                {
+                    // Say a space does not need to be added
+                    bool addSpace = false;
+
+                    // Split by characters in the word
+                    foreach (char c in word)
+                    {
+                        // Add the character gap signifier if it needs to be added
+                        if (!addSpace)
+                        {
+                            addSpace = !addSpace;
+                        }
+                        else
+                        {
+                            res += ' ';
+                        }
+
+                        res += MorseCharacterValues[c];
+                    }
+
+                    // Add the word gap signifier
+                    res += '|';
+                }
+
+                return res;
+            }
+        }
+
+        /// <summary>
+        /// Checks if a message is valid and won't throw errors when being played.
+        /// <copyright url="https://github.com/wrightg42/morse-code"> This code is protected under the MIT License. </copyright>
+        /// </summary>
+        /// <param name="message"> The message to check. </param>
+        /// <param name="isMorseForm"> Whether the message is in morse form. </param>
+        /// <returns> Whether the message is valid. </returns>
+        public static bool ValidMessage(string message, bool isMorseForm = false)
+        {
+            if (isMorseForm)
+            {
+                return ValidMorse(message);
+            }
+            else
+            {
+                return ValidEnglish(message);
+            }
+        }
+
+        /// <summary>
+        /// Validates english to see if it can be converted to morse code.
+        /// <copyright url="https://github.com/wrightg42/morse-code"> This code is protected under the MIT License. </copyright>
+        /// </summary>
+        /// <param name="message"> The message. </param>
+        /// <returns> Whether the message is valid. </returns>
+        public static bool ValidEnglish(string message)
+        {
+            // Make the message upper case
+            message = message.ToUpper();
+
+            // Check each character is valid
+            foreach (string word in message.Split(' '))
+            {
+                foreach (char c in word)
+                {
+                    if (!MorseCharacterValues.ContainsKey(c))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Validates a morse message.
+        /// <copyright url="https://github.com/wrightg42/morse-code"> This code is protected under the MIT License. </copyright>
+        /// </summary>
+        /// <param name="message"> The message. </param>
+        /// <returns> Whether the message is valid. </returns>
+        public static bool ValidMorse(string message)
+        {
+            // Make the message upper case
+            message = message.ToUpper();
+
+            // Check each letter is valid
+            foreach (string word in message.Split(new char[] { '\\', '|', '/' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                foreach (string letter in word.Split(' '))
+                {
+                    if (!MorseCharacterValues.ContainsValue(letter))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private void button_Encode_Click(object sender, RoutedEventArgs e)
         {
             if (comboBox.SelectedIndex == 0)
             {
-                textBox.Text = Enc(textBox.Text);
+                textBoxDecode.Text = ConvertFromMorse(textBox.Text);
             }
             else if (comboBox.SelectedIndex == 1)
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(textBox.Text);
-                textBox.Text = Convert.ToBase64String(bytes);
+                textBoxDecode.Text = Convert.ToBase64String(bytes);
             }
             else if (comboBox.SelectedIndex == 2)
             {
-                //int n;
-                if (textBox.Text.Length == 8)// && int.TryParse(textBox.Text, out n))
+                if (textBox.Text.Length == 8)
                 {
-                    textBox.Text = "http://pan.baidu.com/s/" + textBox.Text;
+                    textBoxDecode.Text = "http://pan.baidu.com/s/" + textBox.Text;
                 }
             }
             else if (comboBox.SelectedIndex == 3)
             {
                 if (textBox.Text.Length == 40)
                 {
-                    textBox.Text = "magnet:?xt=urn:btih:" + textBox.Text;
+                    textBoxDecode.Text = "magnet:?xt=urn:btih:" + textBox.Text;
                 }
             }
         }
@@ -195,17 +285,12 @@ namespace Old_Drivers
         {
             if (comboBox.SelectedIndex == 0)
             {
-                textBox.Text = Dec(textBox.Text);
+                textBoxDecode.Text = ConvertToMorse(textBox.Text);
             }
             else if (comboBox.SelectedIndex == 1)
             {
                 byte[] outputb = Convert.FromBase64String(textBox.Text);
-                textBox.Text = Encoding.UTF8.GetString(outputb);
-            }
-            else if (comboBox.SelectedIndex == 2)
-            {
-                byte[] bytes = Encoding.UTF8.GetBytes(textBox.Text);
-                textBox.Text = Convert.ToBase64String(bytes);
+                textBoxDecode.Text = Encoding.UTF8.GetString(outputb);
             }
         }
 
@@ -213,6 +298,30 @@ namespace Old_Drivers
         {
             ContentDialog contentDialog = new ContentDialogAbout();
             await contentDialog.ShowAsync();
+        }
+
+        private void comboBox_Selection_Changed(object sender, SelectionChangedEventArgs e)
+        {
+            if (comboBox.SelectedIndex == 2)
+            {
+                buttonDecoding.IsEnabled = false;
+            }
+            else if (comboBox.SelectedIndex == 3)
+            {
+                buttonDecoding.IsEnabled = false;
+            }
+            else
+            {
+                buttonDecoding.IsEnabled = true;
+            }
+        }
+
+        private void button_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            DataPackage dataPackage = new DataPackage();
+            dataPackage.RequestedOperation = DataPackageOperation.Copy;
+            dataPackage.SetText(textBoxDecode.Text);
+            Clipboard.SetContent(dataPackage);
         }
     }
 }
