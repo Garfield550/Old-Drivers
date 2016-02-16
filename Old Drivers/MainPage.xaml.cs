@@ -258,7 +258,7 @@ namespace Old_Drivers
         {
             if (comboBox.SelectedIndex == 0)
             {
-                textBoxDecode.Text = ConvertFromMorse(textBox.Text);
+                textBoxDecode.Text = ConvertToMorse(textBox.Text);
             }
             else if (comboBox.SelectedIndex == 1)
             {
@@ -285,7 +285,7 @@ namespace Old_Drivers
         {
             if (comboBox.SelectedIndex == 0)
             {
-                textBoxDecode.Text = ConvertToMorse(textBox.Text);
+                textBoxDecode.Text = ConvertFromMorse(textBox.Text);
             }
             else if (comboBox.SelectedIndex == 1)
             {

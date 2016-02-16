@@ -127,7 +127,7 @@
     <value>Encode</value>
   </data>
   <data name="buttonCopyLanguage.Content" xml:space="preserve">
-    <value>Copy to Clipboard</value>
+    <value>Copy</value>
   </data>
   <data name="buttonDecodingLanguage.Content" xml:space="preserve">
     <value>Decode</value>
@@ -142,7 +142,7 @@
     <value>Magnet URI Completion</value>
   </data>
   <data name="comboBoxMorseCode.Content" xml:space="preserve">
-    <value>Morse Code</value>
+    <value>Morse Code Convert</value>
   </data>
   <data name="contentDialogAbout.PrimaryButtonText" xml:space="preserve">
     <value>OK</value>
@@ -152,6 +152,9 @@
   </data>
   <data name="headerTextBlock.Text" xml:space="preserve">
     <value>Old Drivers</value>
+  </data>
+  <data name="selectPointTextBlock.Text" xml:space="preserve">
+    <value>Please select an option:</value>
   </data>
   <data name="textBlockSource.Text" xml:space="preserve">
     <value>Source:</value>

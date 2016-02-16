@@ -18,13 +18,16 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock x:Uid="headerTextBlock" Grid.Column="0" Text="" VerticalAlignment="Center" Margin="20,0,0,0" Foreground="White"/>
-            <ComboBox x:Name="comboBox" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" SelectionChanged="comboBox_Selection_Changed">
-                <ComboBoxItem x:Uid="comboBoxMorseCode" Content=""/>
-                <ComboBoxItem x:Uid="comboBoxBase64" Content=""/>
-                <ComboBoxItem x:Uid="comboBoxBaiduCloudDisc" Content=""/>
-                <ComboBoxItem x:Uid="comboBoxMagnetURI" Content=""/>
-            </ComboBox>
+            <TextBlock x:Uid="headerTextBlock" Grid.Column="0" Text="" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"/>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0">
+                <TextBlock x:Uid="selectPointTextBlock" Text="" VerticalAlignment="Center" Foreground="White"/>
+                <ComboBox x:Name="comboBox" SelectionChanged="comboBox_Selection_Changed" Margin="0,10,0,0">
+                    <ComboBoxItem x:Uid="comboBoxMorseCode" Content=""/>
+                    <ComboBoxItem x:Uid="comboBoxBase64" Content=""/>
+                    <ComboBoxItem x:Uid="comboBoxBaiduCloudDisc" Content=""/>
+                    <ComboBoxItem x:Uid="comboBoxMagnetURI" Content=""/>
+                </ComboBox>
+            </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Vertical">
             <TextBlock x:Uid="textBlockSource" Margin="10,10,0,0" Text=""/>

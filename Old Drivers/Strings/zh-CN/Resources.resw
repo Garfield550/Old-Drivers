@@ -127,7 +127,7 @@
     <value>编码</value>
   </data>
   <data name="buttonCopyLanguage.Content" xml:space="preserve">
-    <value>复制到剪贴板</value>
+    <value>复制</value>
   </data>
   <data name="buttonDecodingLanguage.Content" xml:space="preserve">
     <value>解码</value>
@@ -152,6 +152,9 @@
   </data>
   <data name="headerTextBlock.Text" xml:space="preserve">
     <value>老司机</value>
+  </data>
+  <data name="selectPointTextBlock.Text" xml:space="preserve">
+    <value>请选择一个选项：</value>
   </data>
   <data name="textBlockSource.Text" xml:space="preserve">
     <value>源：</value>
