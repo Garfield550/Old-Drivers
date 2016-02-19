@@ -11,6 +11,7 @@ Old Drivers 是一個編碼和解碼的工具，它使用 Windows UWP 寫成。
 - 磁力鏈接的補全
 
 運行環境：
+
 &emsp;&emsp;Windows 10 10240+
 
 開發環境：
@@ -18,4 +19,5 @@ Old Drivers 是一個編碼和解碼的工具，它使用 Windows UWP 寫成。
 - Microsoft Visual Studio 2015+
 
 協議：
+
 &emsp;&emsp;MIT
