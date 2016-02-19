@@ -1,7 +1,7 @@
 # Old Drivers #
 
 ----------
-Old Drivers 是一個編碼和解碼的工具，它使用 Windows UWP 寫成。
+Old Drivers 是一個編碼和解碼的工具，它是 UWP 應用。
 這個項目的原作者是 [CharlesEriri](https://github.com/CharlesEriri/ "GitHub") 的 [Old-driver](https://github.com/CharlesEriri/Old-driver "Old-driver") 。
 
 功能：
