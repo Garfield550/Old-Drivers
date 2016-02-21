@@ -29,10 +29,10 @@
                 </ComboBox>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="1" Orientation="Vertical">
-            <TextBlock x:Uid="textBlockSource" Margin="10,10,0,0" Text=""/>
+        <StackPanel Grid.Row="1" Orientation="Vertical" Padding="10,0,10,0">
+            <TextBlock x:Uid="textBlockSource" Margin="0,10,0,0" Text=""/>
             <TextBox x:Name="textBox" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0,5,0,0"/>
-            <TextBlock x:Uid="textBlockTranslate" Margin="10,10,0,0" Text=""/>
+            <TextBlock x:Uid="textBlockTranslate" Margin="0,10,0,0" Text=""/>
             <TextBox x:Name="textBoxDecode" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0,5,0,0" IsReadOnly="True"/>
         </StackPanel>
         <Button x:Name="buttonAbout" x:Uid="buttonAboutLanguage" Grid.Row="2" Content="" HorizontalAlignment="Left" Margin="10,20,0,10" Click="showAbout"/>
