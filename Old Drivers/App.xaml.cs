@@ -87,6 +87,7 @@ namespace Old_Drivers
             // show StatusBar
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
             {
+                await StatusBar.GetForCurrentView().ShowAsync();
                 var statusBar = StatusBar.GetForCurrentView();
                 statusBar.BackgroundColor = Colors.Black;
                 statusBar.ForegroundColor = Colors.White;
