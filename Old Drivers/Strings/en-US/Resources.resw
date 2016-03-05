@@ -117,32 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="appBarButtonAbout.Label" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="appBarButtonCopy.Label" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="appBarButtonDecode.Label" xml:space="preserve">
+    <value>Decode</value>
+  </data>
+  <data name="appBarButtonDelete.Label" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="appBarButtonEncode.Label" xml:space="preserve">
+    <value>Encode</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>Old Drivers</value>
   </data>
-  <data name="buttonAboutLanguage.Content" xml:space="preserve">
-    <value>About</value>
+  <data name="baiduPivotItem.Header" xml:space="preserve">
+    <value>Baidu</value>
   </data>
-  <data name="buttonCodingLanguage.Content" xml:space="preserve">
-    <value>Encode</value>
-  </data>
-  <data name="buttonCopyLanguage.Content" xml:space="preserve">
-    <value>Copy</value>
-  </data>
-  <data name="buttonDecodingLanguage.Content" xml:space="preserve">
-    <value>Decode</value>
-  </data>
-  <data name="comboBoxBaiduCloudDisc.Content" xml:space="preserve">
-    <value>Baidu Cloud Disc Completion</value>
-  </data>
-  <data name="comboBoxBase64.Content" xml:space="preserve">
-    <value>Base 64 Code</value>
-  </data>
-  <data name="comboBoxMagnetURI.Content" xml:space="preserve">
-    <value>Magnet URI Completion</value>
-  </data>
-  <data name="comboBoxMorseCode.Content" xml:space="preserve">
-    <value>Morse Code Convert</value>
+  <data name="base64PivotItem.Header" xml:space="preserve">
+    <value>Base 64</value>
   </data>
   <data name="contentDialogAbout.PrimaryButtonText" xml:space="preserve">
     <value>OK</value>
@@ -150,11 +147,14 @@
   <data name="contentDialogAbout.Title" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="headerTextBlock.Text" xml:space="preserve">
+  <data name="magnetPivotItem.Header" xml:space="preserve">
+    <value>Magnet</value>
+  </data>
+  <data name="mainPivot.Title" xml:space="preserve">
     <value>Old Drivers</value>
   </data>
-  <data name="selectPointTextBlock.Text" xml:space="preserve">
-    <value>Please select an option:</value>
+  <data name="morsePivotItem.Header" xml:space="preserve">
+    <value>Morse</value>
   </data>
   <data name="textBlockSource.Text" xml:space="preserve">
     <value>Source:</value>

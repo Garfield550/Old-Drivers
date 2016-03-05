@@ -32,7 +32,7 @@ namespace Old_Drivers
         /// 将在启动应用程序以打开特定文件等情况下使用。
         /// </summary>
         /// <param name="e">有关启动请求和过程的详细信息。</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
@@ -77,9 +77,21 @@ namespace Old_Drivers
             /// </summary>
             var appView = ApplicationView.GetForCurrentView();
             // 自定义非活动状态下的标题栏颜色
-            appView.TitleBar.InactiveBackgroundColor = Colors.LightGray;
+            appView.TitleBar.InactiveBackgroundColor = Colors.Black;
             // 自定义非活动状态下的按钮颜色
-            appView.TitleBar.ButtonInactiveBackgroundColor = Colors.LightGray;
+            appView.TitleBar.ButtonInactiveBackgroundColor = Colors.Black;
+
+            /// <summary>
+            /// Code copy from https://stenobot.wordpress.com/2015/07/08/uwp-app-development-styling-the-mobile-status-bar/
+            /// </summary>
+            // show StatusBar
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                var statusBar = StatusBar.GetForCurrentView();
+                statusBar.BackgroundColor = Colors.Black;
+                statusBar.ForegroundColor = Colors.White;
+                statusBar.BackgroundOpacity = 1;
+            }
         }
 
         /// <summary>

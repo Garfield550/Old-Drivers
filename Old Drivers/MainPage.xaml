@@ -5,41 +5,93 @@
     xmlns:local="using:Old_Drivers"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" RequestedTheme="Dark">
+    <Page.BottomAppBar>
+        <CommandBar x:Name="bottomCommandBar">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="appBarButtonAbout" x:Name="appBarButtonAbout" Click="showAbout"/>
+            </CommandBar.SecondaryCommands>
+            <AppBarButton x:Uid="appBarButtonEncode" x:Name="appBarButtonEncode" Click="appBarButtonEncodeClick">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="ENC" FontFamily="Segoe UI"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Uid="appBarButtonDecode" x:Name="appBarButtonDecode" Click="appBarButtonDecodeClick">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe UI" Glyph="DEC"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Uid="appBarButtonCopy" x:Name="appBarButtonCopy" Icon="Copy" Click="appBarButtonCopyClick"/>
+            <AppBarButton x:Uid="appBarButtonDelete" x:Name="appBarButtonDelete" Icon="Delete" Click="appBarButtonDeleteClick"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#FF0078D7" Padding="0,10,0,50">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock x:Uid="headerTextBlock" Grid.Column="0" Text="" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"/>
-            <StackPanel Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0">
-                <TextBlock x:Uid="selectPointTextBlock" Text="" VerticalAlignment="Center" Foreground="White"/>
-                <ComboBox x:Name="comboBox" SelectionChanged="comboBox_Selection_Changed" Margin="0,10,0,0">
-                    <ComboBoxItem x:Uid="comboBoxMorseCode" Content=""/>
-                    <ComboBoxItem x:Uid="comboBoxBase64" Content=""/>
-                    <ComboBoxItem x:Uid="comboBoxBaiduCloudDisc" Content=""/>
-                    <ComboBoxItem x:Uid="comboBoxMagnetURI" Content=""/>
-                </ComboBox>
-            </StackPanel>
-        </Grid>
-        <StackPanel Grid.Row="1" Orientation="Vertical" Padding="10,0,10,0">
-            <TextBlock x:Uid="textBlockSource" Margin="0,10,0,0" Text=""/>
-            <TextBox x:Name="textBox" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0,5,0,0"/>
-            <TextBlock x:Uid="textBlockTranslate" Margin="0,10,0,0" Text=""/>
-            <TextBox x:Name="textBoxDecode" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0,5,0,0" IsReadOnly="True"/>
-        </StackPanel>
-        <Button x:Name="buttonAbout" x:Uid="buttonAboutLanguage" Grid.Row="2" Content="" HorizontalAlignment="Left" Margin="10,20,0,10" Click="showAbout"/>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,10,10">
-            <Button x:Name="buttonCopy" x:Uid="buttonCopyLanguage" Content="" Click="button_Copy_Click"/>
-            <Button x:Name="buttonCoding" x:Uid="buttonCodingLanguage" Content="" Margin="20,0,0,0" Click="button_Encode_Click"/>
-            <Button x:Name="buttonDecoding" x:Uid="buttonDecodingLanguage" Content="" Margin="20,0,0,0" Click="button_Decode_Click"/>
-        </StackPanel>
+        <Pivot x:Uid="mainPivot" x:Name="mainPivot" Title="Old Drivers" SelectionChanged="mainPivotSelectionChanged">
+            <PivotItem x:Uid="morsePivotItem" Header="Morse">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" x:Uid="textBlockSource" Text="Source"/>
+                    <TextBox Grid.Row="1" x:Name="morseTextBoxSource" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="2" x:Uid="textBlockTranslate" Text="Translate"/>
+                    <TextBox Grid.Row="3" x:Name="morseTextBoxTranslate" TextWrapping="Wrap" IsReadOnly="True"/>
+                    <Grid Grid.Row="4" Height="{Binding ActualHeight, ElementName=bottomCommandBar}"/>
+                </Grid>
+            </PivotItem>
+            <PivotItem x:Uid="base64PivotItem" Header="Base64">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" x:Uid="textBlockSource" Text="Source"/>
+                    <TextBox Grid.Row="1" x:Name="base64TextBoxSource" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="2" x:Uid="textBlockTranslate" Text="Translate"/>
+                    <TextBox Grid.Row="3" x:Name="base64TextBoxTranslate" TextWrapping="Wrap" IsReadOnly="True"/>
+                    <Grid Grid.Row="4" Height="{Binding ActualHeight, ElementName=bottomCommandBar}"/>
+                </Grid>
+            </PivotItem>
+            <PivotItem x:Uid="baiduPivotItem" Header="Baidu Cloud">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" x:Uid="textBlockSource" Text="Source"/>
+                    <TextBox Grid.Row="1" x:Name="baiduTextBoxSource" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="2" x:Uid="textBlockTranslate" Text="Translate"/>
+                    <TextBox Grid.Row="3" x:Name="baiduTextBoxTranslate" TextWrapping="Wrap" IsReadOnly="True"/>
+                    <Grid Grid.Row="4" Height="{Binding ActualHeight, ElementName=bottomCommandBar}"/>
+                </Grid>
+            </PivotItem>
+            <PivotItem x:Uid="magnetPivotItem" Header="Magnet">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" x:Uid="textBlockSource" Text="Source"/>
+                    <TextBox Grid.Row="1" x:Name="magnetTextBoxSource" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="2" x:Uid="textBlockTranslate" Text="Translate"/>
+                    <TextBox Grid.Row="3" x:Name="magnetTextBoxTranslate" TextWrapping="Wrap" IsReadOnly="True"/>
+                    <Grid Grid.Row="4" Height="{Binding ActualHeight, ElementName=bottomCommandBar}"/>
+                </Grid>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>

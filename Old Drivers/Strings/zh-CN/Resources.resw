@@ -117,32 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="appBarButtonAbout.Label" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="appBarButtonCopy.Label" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="appBarButtonDecode.Label" xml:space="preserve">
+    <value>解码</value>
+  </data>
+  <data name="appBarButtonDelete.Label" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="appBarButtonEncode.Label" xml:space="preserve">
+    <value>编码</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>老司机</value>
   </data>
-  <data name="buttonAboutLanguage.Content" xml:space="preserve">
-    <value>关于</value>
+  <data name="baiduPivotItem.Header" xml:space="preserve">
+    <value>百度盘补全</value>
   </data>
-  <data name="buttonCodingLanguage.Content" xml:space="preserve">
-    <value>编码</value>
-  </data>
-  <data name="buttonCopyLanguage.Content" xml:space="preserve">
-    <value>复制</value>
-  </data>
-  <data name="buttonDecodingLanguage.Content" xml:space="preserve">
-    <value>解码</value>
-  </data>
-  <data name="comboBoxBaiduCloudDisc.Content" xml:space="preserve">
-    <value>百度云盘补全</value>
-  </data>
-  <data name="comboBoxBase64.Content" xml:space="preserve">
+  <data name="base64PivotItem.Header" xml:space="preserve">
     <value>Base 64 编解码</value>
-  </data>
-  <data name="comboBoxMagnetURI.Content" xml:space="preserve">
-    <value>磁力链接补全</value>
-  </data>
-  <data name="comboBoxMorseCode.Content" xml:space="preserve">
-    <value>摩尔斯电码</value>
   </data>
   <data name="contentDialogAbout.PrimaryButtonText" xml:space="preserve">
     <value>确定</value>
@@ -150,11 +147,14 @@
   <data name="contentDialogAbout.Title" xml:space="preserve">
     <value>关于</value>
   </data>
-  <data name="headerTextBlock.Text" xml:space="preserve">
+  <data name="magnetPivotItem.Header" xml:space="preserve">
+    <value>磁力链接补全</value>
+  </data>
+  <data name="mainPivot.Title" xml:space="preserve">
     <value>老司机</value>
   </data>
-  <data name="selectPointTextBlock.Text" xml:space="preserve">
-    <value>请选择一个选项：</value>
+  <data name="morsePivotItem.Header" xml:space="preserve">
+    <value>摩尔斯电码</value>
   </data>
   <data name="textBlockSource.Text" xml:space="preserve">
     <value>源：</value>

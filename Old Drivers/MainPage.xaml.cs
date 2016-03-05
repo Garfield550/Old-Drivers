@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 using System.Text;
 using System.Collections.Generic;
 using Windows.ApplicationModel.DataTransfer;
-
+using System.Text.RegularExpressions;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -176,7 +176,7 @@ namespace Old_Drivers
                     }
 
                     // Add the word gap signifier
-                    res += '|';
+                    // res += '|';
                 }
 
                 return res;
@@ -254,74 +254,147 @@ namespace Old_Drivers
             return true;
         }
 
-        private void button_Encode_Click(object sender, RoutedEventArgs e)
-        {
-            if (comboBox.SelectedIndex == 0)
-            {
-                textBoxDecode.Text = ConvertToMorse(textBox.Text);
-            }
-            else if (comboBox.SelectedIndex == 1)
-            {
-                byte[] bytes = Encoding.UTF8.GetBytes(textBox.Text);
-                textBoxDecode.Text = Convert.ToBase64String(bytes);
-            }
-            else if (comboBox.SelectedIndex == 2)
-            {
-                if (textBox.Text.Length == 8)
-                {
-                    textBoxDecode.Text = "http://pan.baidu.com/s/" + textBox.Text;
-                }
-            }
-            else if (comboBox.SelectedIndex == 3)
-            {
-                if (textBox.Text.Length == 40)
-                {
-                    textBoxDecode.Text = "magnet:?xt=urn:btih:" + textBox.Text;
-                }
-            }
-        }
-
-        private void button_Decode_Click(object sender, RoutedEventArgs e)
-        {
-            if (comboBox.SelectedIndex == 0)
-            {
-                textBoxDecode.Text = ConvertFromMorse(textBox.Text);
-            }
-            else if (comboBox.SelectedIndex == 1)
-            {
-                byte[] outputb = Convert.FromBase64String(textBox.Text);
-                textBoxDecode.Text = Encoding.UTF8.GetString(outputb);
-            }
-        }
-
         private async void showAbout(object sender, RoutedEventArgs e)
         {
             ContentDialog contentDialog = new ContentDialogAbout();
             await contentDialog.ShowAsync();
         }
 
-        private void comboBox_Selection_Changed(object sender, SelectionChangedEventArgs e)
+        private void mainPivotSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (comboBox.SelectedIndex == 2)
+            int pivotIndex = mainPivot.SelectedIndex;
+
+            switch (pivotIndex)
             {
-                buttonDecoding.IsEnabled = false;
-            }
-            else if (comboBox.SelectedIndex == 3)
-            {
-                buttonDecoding.IsEnabled = false;
-            }
-            else
-            {
-                buttonDecoding.IsEnabled = true;
+                case 0:
+                    appBarButtonDecode.Visibility = Visibility.Visible;
+                    break;
+                case 1:
+                    appBarButtonDecode.Visibility = Visibility.Visible;
+                    break;
+                case 2:
+                    appBarButtonDecode.Visibility = Visibility.Collapsed;
+                    break;
+                case 3:
+                    appBarButtonDecode.Visibility = Visibility.Collapsed;
+                    break;
             }
         }
 
-        private void button_Copy_Click(object sender, RoutedEventArgs e)
+        private void appBarButtonEncodeClick(object sender, RoutedEventArgs e)
+        {
+            if (mainPivot.SelectedIndex == 0)
+            {
+                morseTextBoxTranslate.Text = ConvertToMorse(morseTextBoxSource.Text);
+            }
+            else if (mainPivot.SelectedIndex == 1)
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(base64TextBoxSource.Text);
+                try
+                {
+                    base64TextBoxTranslate.Text = Convert.ToBase64String(bytes);
+                }
+                catch
+                {
+                    base64TextBoxTranslate.Text = base64TextBoxSource.Text;
+                }
+            }
+            else if (mainPivot.SelectedIndex == 2)
+            {
+                string temp = baiduTextBoxSource.Text;
+                string text = Regex.Replace(temp, @"\s", "");
+
+                if (baiduTextBoxSource.Text.Length == 8)
+                {
+                    baiduTextBoxTranslate.Text = "http://pan.baidu.com/s/" + text;
+                }
+                else if (baiduTextBoxSource.Text.Length == 9)
+                {
+                    baiduTextBoxTranslate.Text = "http://pan.baidu.com/s" + text;
+                }
+                else if (baiduTextBoxSource.Text.Length == 10)
+                {
+                    baiduTextBoxTranslate.Text = "http://pan.baidu.com/" + text;
+                }
+                else if (baiduTextBoxSource.Text.Length == 11)
+                {
+                    baiduTextBoxTranslate.Text = "http://pan.baidu.com" + text;
+                }
+                else
+                {
+                    baiduTextBoxTranslate.Text = "?";
+                }
+            }
+            else if (mainPivot.SelectedIndex == 3)
+            {
+                string temp = magnetTextBoxSource.Text;
+                string text = Regex.Replace(temp, @"\s", "");
+
+                if (magnetTextBoxSource.Text.Length == 40)
+                {
+                    magnetTextBoxTranslate.Text = "magnet:?xt=urn:btih:" + text;
+                }
+                else
+                {
+                    magnetTextBoxTranslate.Text = "?";
+                }
+            }
+        }
+
+        private void appBarButtonDecodeClick(object sender, RoutedEventArgs e)
+        {
+            if (mainPivot.SelectedIndex == 0)
+            {
+                morseTextBoxTranslate.Text = ConvertFromMorse(morseTextBoxSource.Text);
+            }
+            else if (mainPivot.SelectedIndex == 1)
+            {
+                byte[] outputb = Convert.FromBase64String(base64TextBoxSource.Text);
+                try
+                {
+                    base64TextBoxTranslate.Text = Encoding.UTF8.GetString(outputb);
+                }
+                catch
+                {
+                    base64TextBoxTranslate.Text = base64TextBoxSource.Text;
+                }
+            }
+        }
+
+        private void appBarButtonCopyClick(object sender, RoutedEventArgs e)
         {
             DataPackage dataPackage = new DataPackage();
             dataPackage.RequestedOperation = DataPackageOperation.Copy;
-            dataPackage.SetText(textBoxDecode.Text);
+
+            if (mainPivot.SelectedIndex == 0)
+            {
+                dataPackage.SetText(morseTextBoxTranslate.Text);
+            }
+            else if (mainPivot.SelectedIndex == 1)
+            {
+                dataPackage.SetText(base64TextBoxTranslate.Text);
+            }
+            else if (mainPivot.SelectedIndex == 2)
+            {
+                dataPackage.SetText(baiduTextBoxTranslate.Text);
+            }
+            else if (mainPivot.SelectedIndex == 3)
+            {
+                dataPackage.SetText(magnetTextBoxTranslate.Text);
+            }
             Clipboard.SetContent(dataPackage);
+        }
+
+        private void appBarButtonDeleteClick(object sender, RoutedEventArgs e)
+        {
+            morseTextBoxSource.Text = string.Empty;
+            base64TextBoxSource.Text = string.Empty;
+            baiduTextBoxSource.Text = string.Empty;
+            magnetTextBoxSource.Text = string.Empty;
+            morseTextBoxTranslate.Text = string.Empty;
+            base64TextBoxTranslate.Text = string.Empty;
+            baiduTextBoxTranslate.Text = string.Empty;
+            magnetTextBoxTranslate.Text = string.Empty;
         }
     }
 }
