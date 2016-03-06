@@ -254,6 +254,26 @@ namespace Old_Drivers
             return true;
         }
 
+        /// <summary>
+        /// Trim White Space
+        /// Code copy from http://www.codeproject.com/Articles/1014073/Fastest-method-to-remove-all-whitespace-from-Strin
+        /// </summary>
+        static Regex whitespace = new Regex("\\s+", RegexOptions.Compiled);
+
+        public static string TrimWithRegex(string str)
+        {
+            return whitespace.Replace(str, string.Empty);
+        }
+
+        /// <summary>
+        /// Trim All
+        /// </summary>
+        public static string TrimAll(string str)
+        {
+            str = str.Trim();
+            return TrimWithRegex(str);
+        }
+
         private async void showAbout(object sender, RoutedEventArgs e)
         {
             ContentDialog contentDialog = new ContentDialogAbout();
@@ -301,8 +321,7 @@ namespace Old_Drivers
             }
             else if (mainPivot.SelectedIndex == 2)
             {
-                string temp = baiduTextBoxSource.Text;
-                string text = Regex.Replace(temp, @"\s", "");
+                string text = TrimAll(baiduTextBoxSource.Text);
 
                 if (baiduTextBoxSource.Text.Length == 8)
                 {
@@ -327,8 +346,7 @@ namespace Old_Drivers
             }
             else if (mainPivot.SelectedIndex == 3)
             {
-                string temp = magnetTextBoxSource.Text;
-                string text = Regex.Replace(temp, @"\s", "");
+                string text = TrimAll(magnetTextBoxSource.Text);
 
                 if (magnetTextBoxSource.Text.Length == 40)
                 {
@@ -364,8 +382,6 @@ namespace Old_Drivers
         private void appBarButtonCopyClick(object sender, RoutedEventArgs e)
         {
             DataPackage dataPackage = new DataPackage();
-            dataPackage.RequestedOperation = DataPackageOperation.Copy;
-
             if (mainPivot.SelectedIndex == 0)
             {
                 dataPackage.SetText(morseTextBoxTranslate.Text);
@@ -382,6 +398,7 @@ namespace Old_Drivers
             {
                 dataPackage.SetText(magnetTextBoxTranslate.Text);
             }
+            dataPackage.RequestedOperation = DataPackageOperation.Copy;
             Clipboard.SetContent(dataPackage);
         }
 
