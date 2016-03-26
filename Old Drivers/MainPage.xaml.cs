@@ -176,7 +176,7 @@ namespace Old_Drivers
                     }
 
                     // Add the word gap signifier
-                    // res += '|';
+                    res += '|';
                 }
 
                 return res;

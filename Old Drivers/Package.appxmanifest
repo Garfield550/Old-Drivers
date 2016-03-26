@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="8a010df0-da9a-4c77-8a76-3e2fa81aaf01" Publisher="CN=Garfield550" Version="1.0.0.0" />
+  <Identity Name="43781StarkLee.OldDrivers" Publisher="CN=D24A393E-C743-4161-871E-DD05D32FB78B" Version="1.1.1.0" />
   <mp:PhoneIdentity PhoneProductId="8a010df0-da9a-4c77-8a76-3e2fa81aaf01" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Old Drivers</DisplayName>
-    <PublisherDisplayName>Garfield550</PublisherDisplayName>
+    <PublisherDisplayName>StarkLee</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
