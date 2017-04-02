@@ -96,7 +96,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Old Drivers_StoreKey.pfx" />
     <None Include="project.json" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\zh-CN\Resources.resw" />
@@ -117,7 +116,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Old Drivers_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\BadgeLogo.scale-200.png" />
@@ -125,7 +123,6 @@
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
-    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

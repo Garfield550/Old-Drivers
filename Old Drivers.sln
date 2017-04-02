@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Old Drivers", "Old Drivers\Old Drivers.csproj", "{3A9599D2-F31D-4CFE-B0F7-9D1FC6B52B2B}"
 EndProject
@@ -18,6 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3A9599D2-F31D-4CFE-B0F7-9D1FC6B52B2B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3A9599D2-F31D-4CFE-B0F7-9D1FC6B52B2B}.Debug|Any CPU.Build.0 = Debug|x86
+		{3A9599D2-F31D-4CFE-B0F7-9D1FC6B52B2B}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{3A9599D2-F31D-4CFE-B0F7-9D1FC6B52B2B}.Debug|ARM.ActiveCfg = Debug|ARM
 		{3A9599D2-F31D-4CFE-B0F7-9D1FC6B52B2B}.Debug|ARM.Build.0 = Debug|ARM
 		{3A9599D2-F31D-4CFE-B0F7-9D1FC6B52B2B}.Debug|ARM.Deploy.0 = Debug|ARM
